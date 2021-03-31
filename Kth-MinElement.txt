@@ -1,0 +1,20 @@
+//first method, sorting take O(nlogn) or O(n*n)
+//Execution time 2.1
+
+public static int kthSmallest(int[] arr, int l, int r, int k) { 
+    Arrays.sort(arr);
+    return arr[k-1];    
+}
+
+//O(n) solution
+//Execution time 0.2
+public static int kthSmallest(int[] arr, int l, int r, int k) { 
+        PriorityQueue<Integer> p = new PriorityQueue<>(new IntegerCompare());
+        for(int i =l; i<=r; i++){
+            p.add(arr[i]);
+            if(p.size()>k)
+                p.poll();
+        }
+        
+        return p.peek();
+}
