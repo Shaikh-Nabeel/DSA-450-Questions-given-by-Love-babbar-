@@ -1,0 +1,19 @@
+// java solution execution time 0.91
+
+//kadane's algorithm
+
+class Solution{
+
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    int maxSubarraySum(int arr[], int n){
+        int sum = 0,curr_sum = 0;
+        for(int i: arr){
+            sum = Math.max(i, sum+i);
+            curr_sum = Math.max(curr_sum,sum);
+        }
+        return curr_sum;
+    }
+    
+}

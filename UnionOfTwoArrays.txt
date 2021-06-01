@@ -1,0 +1,42 @@
+//As java solution take more time so i tried in python
+
+//python solution execution time 0.03
+class Solution:    
+    #Function to return the count of number of elements in union of two arrays.
+    def doUnion(self,a,n,b,m):
+        myset = {-27272727272}
+        count = 0
+        for i in a:
+            if i not in myset:
+                myset.add(i)
+                count += 1
+        for i in b:
+            if i not in myset:
+                myset.add(i)
+                count += 1
+        return count
+
+//java solution, execution time 3.45
+
+
+class Solution{
+    public static int doUnion(int a[], int n, int b[], int m) 
+    {
+        Set<Integer> set = new HashSet<>();
+        int union_count = 0;
+        for(int i =0; i<n; i++){
+            if(!set.contains(a[i])){
+                union_count++;
+                set.add(a[i]);
+            }
+        }
+        for(int i =0; i<m; i++){
+            if(!set.contains(b[i])){
+                union_count++;
+                set.add(b[i]);
+            }
+        }
+        
+        return union_count;
+    }
+}
