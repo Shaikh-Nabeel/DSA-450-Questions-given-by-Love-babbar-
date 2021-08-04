@@ -1,0 +1,19 @@
+class Solution{
+    
+    static void subSet(ArrayList<Integer> a, int i,int cur,ArrayList<Integer> fnl){
+        if(i == a.size()){
+            fnl.add(cur);
+            return;
+        }
+        
+        subSet(a, i+1, cur+a.get(i), fnl);
+        subSet(a, i+1, cur,fnl);
+    }
+    
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        ArrayList<Integer> fnl = new ArrayList<>();
+        subSet(arr,0,0,fnl);
+        Collections.sort(fnl);
+        return fnl;
+    }
+}

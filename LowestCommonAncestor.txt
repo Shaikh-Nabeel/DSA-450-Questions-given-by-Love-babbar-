@@ -1,0 +1,39 @@
+////java solution, execution time 0.60
+
+class BST
+{   
+    static void printPath(Node root,int data,Queue<Integer> q){
+        if(root == null) return;
+        q.add(root.data);
+        if(data > root.data)
+            printPath(root.right,data,q);
+        
+        if(data < root.data)
+            printPath(root.left,data,q);
+        
+    }
+    
+    //Function to find the lowest common ancestor in a BST. 
+	Node LCA(Node root, int n1, int n2)
+	{
+        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q2 = new LinkedList<>();
+        printPath(root, n1,q);
+        printPath(root, n2,q2);
+        
+        int ancestor = root.data;
+        while(!q.isEmpty() && !q2.isEmpty()){
+            int t1 = q.poll();
+            int t2 = q2.poll();
+            if(t1 == t2){
+                ancestor = t1;
+            }
+            else{
+                break;
+            }
+        }
+        return new Node(ancestor);
+    
+    }
+    
+}

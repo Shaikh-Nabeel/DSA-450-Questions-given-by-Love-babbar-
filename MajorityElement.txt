@@ -1,0 +1,52 @@
+//execution time 2.60 on gfg (java language)
+//BOYER MOORE VOTING ALGORITHM
+
+class Solution
+{
+    static int majorityElement(int a[], int size)
+    {
+        int max_ind =0,count = 1;
+        for(int i =1; i<size; i++){
+            if(a[i] != a[max_ind])
+                count--;
+            else
+                count++;
+            
+            if(count == 0){
+                max_ind = i;
+                count = 1;
+            }
+        }
+        int c=0;
+        for(int i =0; i<size; i++){
+            if(a[i] == a[max_ind]) c++;
+        }
+        if(c > (size/2))
+            return a[max_ind];
+            
+        return -1;
+    }
+}
+
+//execution time 3.22 on gfg (java language brute force method)
+
+class Solution
+{
+    static int majorityElement(int a[], int size)
+    {
+        Map<Integer,Integer> ar = new HashMap<>();
+        for(int i =0; i<size; i++){
+            if(ar.containsKey(a[i])){
+                ar.put(a[i], ar.get(a[i])+1);
+            }
+            else
+                ar.put(a[i], 1);
+        }
+        for(Map.Entry<Integer, Integer> e : ar.entrySet()){
+            int fr = e.getValue();
+            if(fr > (size/2))
+                return e.getKey();
+        }
+        return -1;
+    }
+}

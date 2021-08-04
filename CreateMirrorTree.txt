@@ -1,0 +1,14 @@
+//function to create mirror image of binary tree
+
+
+static Node mirrorImage(Node root){
+        if(root == null) return null;
+        mirrorImage(root.left);
+        mirrorImage(roo
+		t.right);
+        Node left = root.left;
+        Node right = root.right;
+        root.left = right;
+        root.right = left;
+        return root;
+    }

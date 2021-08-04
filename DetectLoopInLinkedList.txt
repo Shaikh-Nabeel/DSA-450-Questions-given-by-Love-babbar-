@@ -1,0 +1,35 @@
+//execution time 1.19 java lang
+//two pointer algorithm
+
+
+public static boolean detectLoop(Node head){
+        if(head == null)return false;
+        Node firstNode = head;
+        Node secondNode = head.next;
+        while(firstNode != null && secondNode != null && secondNode.next != null){
+            if(firstNode == secondNode)
+                return true;
+            else{
+                firstNode = firstNode.next;
+                secondNode = secondNode.next.next;
+            }
+        }
+        return false;
+    }
+
+//execution time 1.32 java lang
+//with HashSet
+
+public static boolean detectLoop(Node root){
+        Set<Node> set = new HashSet<>();
+        while(root != null){
+            if(set.contains(root)){
+                return true;
+            }
+            else{
+                set.add(root);
+                root = root.next;
+            }
+        }
+        return false;
+    }

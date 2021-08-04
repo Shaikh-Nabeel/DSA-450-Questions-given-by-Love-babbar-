@@ -1,0 +1,38 @@
+//java solution
+
+class Solution
+{
+    public static Node joinList(Node mainList, Node prev){
+
+    if(mainList == null){
+            mainList = prev;
+            return mainList;
+        }
+        Node temp = mainList;
+        Node toReturn = temp;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        temp.next = prev;
+        return toReturn;
+    }
+    
+    public static Node reverse(Node node, int k)
+    {
+        Node mainList = null;
+        Node curr = node;
+        while(curr != null){
+            Node prev = null;
+            int m = k;
+            while(m>0 && curr != null){
+                Node next_node = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next_node;
+                m--;
+            }
+            mainList = joinList(mainList, prev);
+        }
+        return mainList;
+    }
+}

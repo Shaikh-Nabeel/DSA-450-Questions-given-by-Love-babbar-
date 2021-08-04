@@ -1,0 +1,14 @@
+// Palindrome string
+// java solution - execution time 1.52
+
+class Solution {
+    int isPlaindrome(String S) {
+        String reverse = "";
+        for(int i =S.length()-1; i>=0; i--){
+            reverse += S.charAt(i);
+        }
+        if(reverse.contentEquals(S))
+            return 1;
+        return 0;
+    }
+}

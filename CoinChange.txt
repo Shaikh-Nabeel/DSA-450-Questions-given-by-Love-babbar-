@@ -1,0 +1,47 @@
+//Coin Change, Execution time 13ms 
+
+class Solution {
+
+		//this approach is using recursion but gives TLE
+
+//     static int coinChange(int[] coins, int amount, int dp[]){
+//         if(amount == 0) return 0;
+//         int min = Integer.MAX_VALUE;
+//         for(int i=0; i<coins.length; i++){
+//             if(amount - coins[i] >= 0){
+//                 int subAns = 0;
+//                 if(dp[amount-coins[i]] != -1){
+//                     subAns = dp[amount-coins[i]];
+//                 }
+//                 else{
+//                     subAns = coinChange(coins, amount - coins[i],dp);
+//                 }
+//                 if(subAns < Integer.MAX_VALUE && subAns + 1< min)
+//                     min = subAns + 1;
+//             }
+//         }
+//         if(min == Integer.MAX_VALUE || min == 0)
+//             min = -1;
+//         return dp[amount] = min;
+//     }
+    
+	//this is working fine
+	
+    public int coinChange(int[] coins, int amount) {
+        if(coins.length == 0)return -1;
+        int dp[] = new int[amount+1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i=0;i<=amount; i++){
+            for(int j=0; j<coins.length; j++){
+                if(i-coins[j]<0)continue;
+                int min = dp[i-coins[j]];
+                if(min != Integer.MAX_VALUE){
+                    dp[i] = Math.min(dp[i],1+min);
+                }
+            }
+        }
+        
+        return dp[amount]==Integer.MAX_VALUE?-1:dp[amount];
+    }
+}

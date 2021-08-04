@@ -1,0 +1,42 @@
+//execution time 1.30 on gfg (java lang)
+//0.03 with c++
+
+class Solution 
+{
+    static int binSearch(ArrayList<Integer> list, int l, int r, int x)
+    {
+        while(l < r)
+        {
+            int m = l + (r-l)/2;
+            
+            if(list.get(m) >= x)
+            {
+                r = m;
+            }
+            else
+            {
+                l = m + 1;
+            }
+        }
+        
+        return r;
+    }
+    //Function to find length of longest increasing subsequence.
+    static int longestSubsequence(int size, int a[])
+    {
+        int max = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(a[0]);
+        for(int i=1; i<size; i++){
+            if(list.get(list.size()-1) < a[i]){
+                list.add(a[i]);
+            }
+            else{
+                int ind = binSearch(list,0,list.size()-1,a[i]);
+                list.set(ind,a[i]);
+            }
+            
+        }
+        return list.size();
+    }
+}

@@ -1,0 +1,53 @@
+class Solution{
+    static int minJumps(int[] a){
+        if(a.length==1) return 1;
+        int step=0;
+        int i =0;
+        while(i<a.length){
+            if(a[i] ==0){
+                step = -1;
+                break;
+            }
+            if(a[i]==1){
+                step++;i++;
+                continue;
+            }
+            if(a[i]+i >= a.length-1){
+                step++;
+                break;
+            }
+            int f = a[i];
+            int jump=-1,index = -1;
+            for(int j = i+1; j<=i+f; j++){
+                if(a[j]+j >= (a.length - 1)){
+              
+                if(jump<a[j]){
+                    System.out.println("{"+ a[j]+", "+ j + "}");
+                        jump = a[j];
+                        index = j;
+                    }
+                }// jump = Math.max(jump, a[j]);
+                else if(a[a[j]+j] != 0){
+                    if(jump<a[j]){
+                     System.out.println("2{"+ a[j]+", "+ a[a[j]+j] + "}");
+                       jump = a[j];
+                        index = j;
+                    }
+                    }
+                    // if(j+jump >= a.length){
+                    //     step++;
+                    //     break;
+                    // }
+                
+            }
+            if(jump > 0){
+                step++;
+                i = index-1;
+                System.out.print("[");
+                System.out.print(index +" , "+ i);
+                System.out.print("]");
+            }
+            i++;
+        }
+        return step;
+    }
